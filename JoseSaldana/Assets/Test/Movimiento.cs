@@ -6,6 +6,7 @@ public class Movimiento : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		transform.position = new Vector3 (-1, 0, 0);
 		
 	}
 	
