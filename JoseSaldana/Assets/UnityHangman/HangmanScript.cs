@@ -5,15 +5,18 @@ using UnityEngine.UI;
 
 public class HangmanScript : MonoBehaviour {
 	public string palabra;
+
 	string palabraEscondida;
 	//se tiene que agregar la libreria UnityEngine.UI
 	public Text outputText;
 	public InputField inputText;
 
+	public AudioClip winSound;
 	public AudioClip successSound;
 	public AudioClip failSound;
 	public AudioSource camSource;
 
+	bool endHangman;
 	// Use this for initialization
 	void Start () {
 		inputText.Select ();
@@ -24,6 +27,13 @@ public class HangmanScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		if(!endHangman){
+			runHangman ();
+		}
+
+	}
+
+	void runHangman(){
 		if (outputText.text != palabraEscondida) {
 			outputText.text = palabraEscondida;
 		}
@@ -50,7 +60,12 @@ public class HangmanScript : MonoBehaviour {
 
 		}
 		if(palabraEscondida == palabra){
-			Debug.Log ("Felicidades");
+			camSource.PlayOneShot (winSound);
+			outputText.text = "Felicidades Ganaste";
+			inputText.gameObject.SetActive (false);
+			endHangman = true;
 		}
 	}
+
+
 }
