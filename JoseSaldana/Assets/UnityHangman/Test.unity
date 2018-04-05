@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -672,9 +672,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a0694464fe9efc4f866d8518db51e34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  palabra: palabra
+  palabra: PAlaBra
   outputText: {fileID: 510298596}
   inputText: {fileID: 1252034056}
+  introSound: {fileID: 0}
   winSound: {fileID: 8300000, guid: 0abd6b8b9bd3b6142892f4d731d313dd, type: 3}
   successSound: {fileID: 8300000, guid: 535408d951c31474894a23e4cc312b70, type: 3}
   failSound: {fileID: 8300000, guid: abefb21f825e73d4db50aa1b76c5d17f, type: 3}
