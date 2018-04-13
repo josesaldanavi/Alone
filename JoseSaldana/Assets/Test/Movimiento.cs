@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Movimiento : MonoBehaviour {
     public float speed;
-    //Rigidbody playerRB;
+    Rigidbody playerRB;
     Vector3 inicialPos;
 
     public AudioClip backgroudSound;
@@ -13,27 +13,29 @@ public class Movimiento : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         inicialPos = transform.position;
-        //playerRB = GetComponent<Rigidbody>();
+        playerRB = GetComponent<Rigidbody>();
         camSource.PlayOneShot(backgroudSound);
 	}
 	// Update is called once per frame
 	void Update () {
 
 		if (Input.GetKey(KeyCode.A)) {
-            //playerRB.MovePosition(transform.position + (Vector3.left * speed * Time.deltaTime));
-            transform.Rotate(new Vector3(0, -35, 0) * Time.deltaTime);
+            playerRB.MovePosition(transform.position + (Vector3.left * speed * Time.deltaTime));
+            //transform.Rotate(new Vector3(0, -35, 0) * Time.deltaTime);
             
         }
 		if (Input.GetKey (KeyCode.D)) {
-			transform.Rotate(new Vector3 (0,35,0)*Time.deltaTime);
-            
-		}
-		if (Input.GetKey (KeyCode.W)) {
-            //playerRB.MovePosition(transform.position+ (transform.forward * speed * Time.deltaTime));
-            transform.Translate (Vector3.forward * speed * Time.deltaTime);
+			playerRB.MovePosition(transform.position+(Vector3.right *speed* Time.deltaTime));
+            //transform.Rotate(new Vector3(0, -35, 0) * Time.deltaTime);
+
+        }
+        if (Input.GetKey (KeyCode.W)) {
+            playerRB.MovePosition(transform.position+ (Vector3.forward * speed * Time.deltaTime));
+            //transform.Translate (Vector3.forward * speed * Time.deltaTime);
         }
 		if (Input.GetKey (KeyCode.S)) {
-            transform.Translate (Vector3.back * speed * Time.deltaTime);
+            playerRB.MovePosition(transform.position + (Vector3.back * speed * Time.deltaTime));
+            //transform.Translate (Vector3.back * speed * Time.deltaTime);
         }
         
 	}
