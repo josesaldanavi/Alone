@@ -20,22 +20,22 @@ public class Movimiento : MonoBehaviour {
 	void Update () {
 
 		if (Input.GetKey(KeyCode.A)) {
-            playerRB.MovePosition(transform.position + (Vector3.left * speed * Time.deltaTime));
-            //transform.Rotate(new Vector3(0, -35, 0) * Time.deltaTime);
+            //playerRB.MovePosition(transform.position + (Vector3.left * speed * Time.deltaTime));
+            transform.Rotate(new Vector3(0, -35, 0) * Time.deltaTime);
             
         }
 		if (Input.GetKey (KeyCode.D)) {
-			playerRB.MovePosition(transform.position+(Vector3.right *speed* Time.deltaTime));
-            //transform.Rotate(new Vector3(0, -35, 0) * Time.deltaTime);
+			//playerRB.MovePosition(transform.position+(Vector3.right *speed* Time.deltaTime));
+            transform.Rotate(new Vector3(0, 35, 0) * Time.deltaTime);
 
         }
         if (Input.GetKey (KeyCode.W)) {
-            playerRB.MovePosition(transform.position+ (Vector3.forward * speed * Time.deltaTime));
-            //transform.Translate (Vector3.forward * speed * Time.deltaTime);
+            //playerRB.MovePosition(transform.position+ (Vector3.forward * speed * Time.deltaTime));
+            transform.Translate (Vector3.forward * speed * Time.deltaTime);
         }
 		if (Input.GetKey (KeyCode.S)) {
-            playerRB.MovePosition(transform.position + (Vector3.back * speed * Time.deltaTime));
-            //transform.Translate (Vector3.back * speed * Time.deltaTime);
+            //playerRB.MovePosition(transform.position + (Vector3.back * speed * Time.deltaTime));
+            transform.Translate (Vector3.back * speed * Time.deltaTime);
         }
         
 	}
