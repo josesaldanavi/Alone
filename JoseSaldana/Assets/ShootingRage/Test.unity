@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -317,6 +317,26 @@ Prefab:
       propertyPath: m_TagString
       value: PlayerBullet
       objectReference: {fileID: 0}
+    - target: {fileID: 4935689505728408, guid: 22e2c0c6d7992b644915844abe6d376f, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0.153
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935689505728408, guid: 22e2c0c6d7992b644915844abe6d376f, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0.032600146
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935689505728408, guid: 22e2c0c6d7992b644915844abe6d376f, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.9994685
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935689505728408, guid: 22e2c0c6d7992b644915844abe6d376f, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3.736
+      objectReference: {fileID: 0}
+    - target: {fileID: 4935689505728408, guid: 22e2c0c6d7992b644915844abe6d376f, type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 114116752562174542, guid: 22e2c0c6d7992b644915844abe6d376f, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 22e2c0c6d7992b644915844abe6d376f, type: 2}
@@ -337,6 +357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a47d64338566d6a49abd77355b4a7b1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angleVelocity: 21
+  speed: 3
+  gunSound: {fileID: 8300000, guid: 535408d951c31474894a23e4cc312b70, type: 3}
+  gun: {fileID: 4699905973222600, guid: c701880a936713c4198031c392f1bf61, type: 2}
+  playerBullet: {fileID: 1917850393321460, guid: 5d801de6624769d429be332a875f6c2c,
+    type: 2}
 --- !u!1 &1143911703
 GameObject:
   m_ObjectHideFlags: 0
@@ -347,6 +373,7 @@ GameObject:
   - component: {fileID: 1143911704}
   - component: {fileID: 1143911706}
   - component: {fileID: 1143911705}
+  - component: {fileID: 1143911707}
   m_Layer: 5
   m_Name: Text
   m_TagString: Untagged
@@ -411,6 +438,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1143911703}
+--- !u!114 &1143911707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1143911703}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8359be54e71c4c4d813600e0724c97e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scoreText: {fileID: 0}
 --- !u!1001 &1409162131
 Prefab:
   m_ObjectHideFlags: 0

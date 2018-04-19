@@ -8,14 +8,14 @@ public class SpawArea : MonoBehaviour {
     public Transform objectToFollow;
     public bool spawnPossible = true;
 
-    public Transform LightBox;
-    static public Light lighIndicator;
+    public Transform lightBox;
+    static public Light lightIndicator;
 
     float timer = 0;
 
-    void start()
+    void Start()
     {
-        lighIndicator = LightBox.Find("Point Light").GetComponent<Light>();
+        lightIndicator = lightBox.Find("Point light").GetComponent<Light>();
     }
 
     void OnTriggerStay(Collider other)
@@ -28,7 +28,7 @@ public class SpawArea : MonoBehaviour {
 
     void OnTriggerExit(Collider other)
     {
-        if (CompareTag("Follower"))
+        if (other.CompareTag("Follower"))
         {
             spawnPossible = true;
         }
@@ -41,10 +41,10 @@ public class SpawArea : MonoBehaviour {
             timer += Time.deltaTime;
             if (timer >= 1)
             {
-               GameObject spawmnedOject=Instantiate(objectToSpawn, transform.position, Quaternion.identity);
-                spawmnedOject.transform.Translate(Vector3.down);
-                spawmnedOject.GetComponents<FollowScript>().target= objectToFollow;
-                spawmnedOject.GetComponents<FollowScript>().speed = Random.Range(1f, 5.5f);
+                GameObject spawnedObject = Instantiate(objectToSpawn, transform.position, Quaternion.identity);
+                spawnedObject.transform.Translate(Vector3.down);
+                spawnedObject.GetComponent<FollowScript>().target = objectToFollow;
+                spawnedObject.GetComponent<FollowScript>().speed = Random.Range(1f, 5.5f);
                 timer = 0;
             }
         }

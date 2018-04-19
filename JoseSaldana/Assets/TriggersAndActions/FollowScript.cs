@@ -12,7 +12,7 @@ public class FollowScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (SpawnArea.lightIndicator.enabled)
+        if (SpawArea.lightIndicator.enabled)
         {
             transform.position = Vector3.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
         }

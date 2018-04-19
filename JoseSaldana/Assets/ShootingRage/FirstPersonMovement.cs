@@ -15,7 +15,7 @@ public class FirstPersonMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.Rotate(Vector3.up * Input.GetAxis("Mouse x")*angleVelocity*Time.deltaTime);
+        transform.Rotate(Vector3.up * Input.GetAxis("Mouse X")*angleVelocity*Time.deltaTime);
         transform.Translate(Vector3.right * Input.GetAxis("Horizontal") * speed * Time.deltaTime);
         transform.Translate(Vector3.forward * Input.GetAxis("Vertical") * speed * Time.deltaTime);
 
