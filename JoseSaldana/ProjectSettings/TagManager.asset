@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Follower
   - PlayerBullet
+  - Block
   layers:
   - Default
   - TransparentFX
