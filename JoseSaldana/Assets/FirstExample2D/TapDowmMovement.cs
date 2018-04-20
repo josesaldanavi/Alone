@@ -54,8 +54,8 @@ public class TapDowmMovement : MonoBehaviour {
 
     void shoot()
     {
-        SpriteRenderer tempRender = Instantiate(bullet, transform.Find("Canon").position, transform.rotation).GetComponent<SpriteRenderer>();
-        tempRender.color = spriteRenderer.color;
+        SpriteRenderer tempRenderer = Instantiate(bullet, transform.Find("Canon").position, transform.rotation).GetComponent<SpriteRenderer>();
+        tempRenderer.color = spriteRenderer.color;
         Destroy(tempRenderer.gameObject, 2);
     }
     void MoveColor()
@@ -66,7 +66,7 @@ public class TapDowmMovement : MonoBehaviour {
     // metodo get axi creado dependiendo de los botones A nega y D posi
     int GetAxis(string axisName)
     {
-       Axis axis = axisList.Find(TargetJoint2D => Target.name == axisName);
+       Axis axis = axisList.Find(target=> target.name == axisName);
         int axisValue = 0;
         if (Input.GetKey(axis.negative))
         {
