@@ -12,7 +12,7 @@ public class TapDowmMovement : MonoBehaviour {
     int colorIndex = 0;
 
     public SpriteRenderer spriteRenderer;
-
+    public Transform sightDirection;
     class Axis
     {
         public string name;
@@ -44,14 +44,21 @@ public class TapDowmMovement : MonoBehaviour {
 
         transform.Translate(Vector3.right * GetAxis("Horizontal") * speed * Time.deltaTime, Space.World);
         transform.Translate(Vector3.up * GetAxis("Vertical") * speed * Time.deltaTime, Space.World);
-        transform.Rotate(Vector3.back * GetAxis("Arrow_H") * angularVelocity * Time.deltaTime);
+        //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angularVelocity * Time.deltaTime);
 
-        if (Input.GetKeyDown(KeyCode.E))
+        Vector3 mouseworldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseworldPos.z = transform.position.z;
+        Debug.DrawLine(transform.position,mouseworldPos,Color.red);
+        sightDirection.up =(mouseworldPos - transform.position).normalized;
+
+        float scrollweetValue = Input.GetAxis("Mouse ScrollWheel");
+
+        if (scrollweetValue !=0)
         {
-            MoveColor();
+            MoveColor(scrollweetValue);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetMouseButtonDown(0))
         {
             Shoot();
         }
@@ -59,14 +66,25 @@ public class TapDowmMovement : MonoBehaviour {
 
     void Shoot()
     {
-        SpriteRenderer tempRenderer = Instantiate(bullet, transform.Find("Canon").position, transform.rotation).GetComponent<SpriteRenderer>();
+        SpriteRenderer tempRenderer = Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
         tempRenderer.color = spriteRenderer.color;
         Destroy(tempRenderer.gameObject, 2);
     }
 
-    void MoveColor()
+    void MoveColor(float moveValue)
     {
-        colorIndex = (colorIndex >= colors.Count - 1) ? 0 : colorIndex + 1;
+        moveValue *= 10;
+        for(int i=0; i< Mathf.Abs(moveValue); i++)
+        {
+            colorIndex += 1 * (int)Mathf.Sign(moveValue);
+            if(colorIndex >= colors.Count)
+            {
+                colorIndex = 0;
+            }else if (colorIndex < 0)
+            {
+                colorIndex = colors.Count - 1;
+            }
+        }
         spriteRenderer.color = colors[colorIndex];
     }
 
