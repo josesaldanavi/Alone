@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4984064299102316}
   - component: {fileID: 212448072132673772}
   - component: {fileID: 61139173966120542}
+  - component: {fileID: 114676390152679708}
   m_Layer: 0
   m_Name: Triangle
   m_TagString: Untagged
@@ -38,7 +39,7 @@ GameObject:
   - component: {fileID: 4726187828008058}
   - component: {fileID: 212806487218815208}
   m_Layer: 0
-  m_Name: Canon
+  m_Name: Cannon
   m_TagString: Untagged
   m_Icon: {fileID: -982381405332843317, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
@@ -96,6 +97,22 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114676390152679708
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1605300101113342}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5147e73b58059ff4a801c44a57aaf8fe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 0
+  angularVelocity: 1
+  bullet: {fileID: 1774817425135122, guid: b4eb3206e864bb4419925631a7467f5a, type: 2}
+  colors: []
+  spriteRenderer: {fileID: 212448072132673772}
 --- !u!212 &212448072132673772
 SpriteRenderer:
   m_ObjectHideFlags: 1
