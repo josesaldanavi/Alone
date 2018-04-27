@@ -10,9 +10,14 @@ public class TapDowmMovement : MonoBehaviour {
 
     public List<Color> colors = new List<Color>();
     int colorIndex = 0;
+    public int ColorIndex { get { return colorIndex; } }
 
     public SpriteRenderer spriteRenderer;
     public Transform sightDirection;
+    public Transform sightObject;
+
+    public LineRenderer sightLine;
+
     class Axis
     {
         public string name;
@@ -32,6 +37,7 @@ public class TapDowmMovement : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        Cursor.visible = false;
         spriteRenderer.color = colors[colorIndex];
         axisList.Add(new Axis("Horizontal", KeyCode.A, KeyCode.D));
         axisList.Add(new Axis("Vertical", KeyCode.S, KeyCode.W));
@@ -44,18 +50,21 @@ public class TapDowmMovement : MonoBehaviour {
 
         transform.Translate(Vector3.right * GetAxis("Horizontal") * speed * Time.deltaTime, Space.World);
         transform.Translate(Vector3.up * GetAxis("Vertical") * speed * Time.deltaTime, Space.World);
-        //sightDirection.Rotate(Vector3.back * GetAxis("Arrow_H") * angularVelocity * Time.deltaTime);
+        //sightDirection.Rotate (Vector3.back * GetAxis ("Arrow_H") * angularVelocity * Time.deltaTime);
 
-        Vector3 mouseworldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        mouseworldPos.z = transform.position.z;
-        Debug.DrawLine(transform.position,mouseworldPos,Color.red);
-        sightDirection.up =(mouseworldPos - transform.position).normalized;
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos.z = transform.position.z;
+        Debug.DrawLine(transform.position, mouseWorldPos, Color.red);
 
-        float scrollweetValue = Input.GetAxis("Mouse ScrollWheel");
+        sightDirection.up = (mouseWorldPos - transform.position).normalized;
+        sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
+        sightLine.SetPositions(new Vector3[] { transform.position, transform.position + sightDirection.up * 3 });
 
-        if (scrollweetValue !=0)
+        float scrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
+
+        if (scrollWheelValue != 0)
         {
-            MoveColor(scrollweetValue);
+            MoveColor(scrollWheelValue);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -74,13 +83,14 @@ public class TapDowmMovement : MonoBehaviour {
     void MoveColor(float moveValue)
     {
         moveValue *= 10;
-        for(int i=0; i< Mathf.Abs(moveValue); i++)
+        for (int i = 0; i < Mathf.Abs(moveValue); i++)
         {
             colorIndex += 1 * (int)Mathf.Sign(moveValue);
-            if(colorIndex >= colors.Count)
+            if (colorIndex >= colors.Count)
             {
                 colorIndex = 0;
-            }else if (colorIndex < 0)
+            }
+            else if (colorIndex < 0)
             {
                 colorIndex = colors.Count - 1;
             }

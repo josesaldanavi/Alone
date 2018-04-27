@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Movimiento : MonoBehaviour {
     public float speed;
-    Rigidbody playerRB;
+    //Rigidbody playerRB;
     Vector3 inicialPos;
 
     public AudioClip backgroudSound;
@@ -13,7 +13,7 @@ public class Movimiento : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         inicialPos = transform.position;
-        playerRB = GetComponent<Rigidbody>();
+       // playerRB = GetComponent<Rigidbody>();
         camSource.PlayOneShot(backgroudSound);
 	}
 	// Update is called once per frame
