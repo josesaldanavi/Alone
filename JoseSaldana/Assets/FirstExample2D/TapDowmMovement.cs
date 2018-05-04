@@ -5,7 +5,7 @@ using UnityEngine;
 public class TapDowmMovement : MonoBehaviour {
     public float speed = 1;
     public float angularVelocity = 1;
-
+    Vector3 mouseWorldPos;
     public GameObject bullet;
 
     public List<Color> colors = new List<Color>();
@@ -52,12 +52,11 @@ public class TapDowmMovement : MonoBehaviour {
         transform.Translate(Vector3.up * GetAxis("Vertical") * speed * Time.deltaTime, Space.World);
         //sightDirection.Rotate (Vector3.back * GetAxis ("Arrow_H") * angularVelocity * Time.deltaTime);
 
-        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = transform.position.z;
         Debug.DrawLine(transform.position, mouseWorldPos, Color.red);
-
+       
         sightDirection.up = (mouseWorldPos - transform.position).normalized;
-        sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
         sightLine.SetPositions(new Vector3[] { transform.position, transform.position + sightDirection.up * 3 });
 
         float scrollWheelValue = Input.GetAxis("Mouse ScrollWheel");
@@ -71,6 +70,11 @@ public class TapDowmMovement : MonoBehaviour {
         {
             Shoot();
         }
+    }
+    void LateUpdate()
+    {
+        sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
+
     }
 
     void Shoot()
