@@ -82,6 +82,7 @@ public class TapDowmMovement : MonoBehaviour {
         SpriteRenderer tempRenderer = Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
         tempRenderer.color = spriteRenderer.color;
         Destroy(tempRenderer.gameObject, 2);
+        TapDowmMovement camera=Camera.main
     }
 
     void MoveColor(float moveValue)

@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -224,7 +224,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07474d6b20b464843a5e1dae481b3ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 5
+  lifePoints: 6
 --- !u!1 &338022721
 GameObject:
   m_ObjectHideFlags: 0
@@ -300,6 +300,15 @@ Prefab:
     - target: {fileID: 1978738354892146, guid: f1580c18a2a141f468e74f293410c1e0, type: 2}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 4618892381071658, guid: f1580c18a2a141f468e74f293410c1e0, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 2.82
+      objectReference: {fileID: 0}
+    - target: {fileID: 114738690284623336, guid: f1580c18a2a141f468e74f293410c1e0,
+        type: 2}
+      propertyPath: speed
+      value: 11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f1580c18a2a141f468e74f293410c1e0, type: 2}
@@ -480,7 +489,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07474d6b20b464843a5e1dae481b3ff7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lifePoints: 120
+  lifePoints: 33
+--- !u!4 &426116949 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4133077989248072, guid: f1580c18a2a141f468e74f293410c1e0,
+    type: 2}
+  m_PrefabInternal: {fileID: 342502613}
 --- !u!1 &851544341
 GameObject:
   m_ObjectHideFlags: 0
@@ -492,6 +506,7 @@ GameObject:
   - component: {fileID: 851544344}
   - component: {fileID: 851544343}
   - component: {fileID: 851544342}
+  - component: {fileID: 851544346}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -562,6 +577,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &851544346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 851544341}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 25b53d62aa4e5d640b0a6a76f8da5d43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  targetObject: {fileID: 426116949}
+  targetColor: {r: 1, g: 0.39705884, b: 0.39705884, a: 0.559}
+  distance: 1.5
+  maxDistance: 7
+  speed: 0
+  impulDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &874014686
 GameObject:
   m_ObjectHideFlags: 0
