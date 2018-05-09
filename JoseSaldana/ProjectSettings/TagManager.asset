@@ -7,6 +7,7 @@ TagManager:
   - Follower
   - PlayerBullet
   - Block
+  - wall
   layers:
   - Default
   - TransparentFX

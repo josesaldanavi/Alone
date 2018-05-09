@@ -5,7 +5,7 @@ using UnityEngine;
 public class TapDowmMovement : MonoBehaviour {
     public float speed = 1;
     public float angularVelocity = 1;
-    Vector3 mouseWorldPos;
+
     public GameObject bullet;
 
     public List<Color> colors = new List<Color>();
@@ -17,6 +17,9 @@ public class TapDowmMovement : MonoBehaviour {
     public Transform sightObject;
 
     public LineRenderer sightLine;
+    Vector3 mouseWorldPos;
+
+    private GameObject wall;
 
     class Axis
     {
@@ -55,7 +58,7 @@ public class TapDowmMovement : MonoBehaviour {
         mouseWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         mouseWorldPos.z = transform.position.z;
         Debug.DrawLine(transform.position, mouseWorldPos, Color.red);
-       
+
         sightDirection.up = (mouseWorldPos - transform.position).normalized;
         sightLine.SetPositions(new Vector3[] { transform.position, transform.position + sightDirection.up * 3 });
 
@@ -63,7 +66,7 @@ public class TapDowmMovement : MonoBehaviour {
 
         if (scrollWheelValue != 0)
         {
-            MoveColor(scrollWheelValue);
+            MoveColor(-scrollWheelValue);
         }
 
         if (Input.GetMouseButtonDown(0))
@@ -71,10 +74,16 @@ public class TapDowmMovement : MonoBehaviour {
             Shoot();
         }
     }
+
     void LateUpdate()
     {
         sightObject.position = (Vector3.Distance(mouseWorldPos, transform.position) >= 1) ? mouseWorldPos : transform.position + sightDirection.up;
-
+        if (wall)
+        {
+            Vector3 dir = wall.transform.position - transform.position;
+            transform.position -= dir * 0.25f;
+            wall = null;
+        }
     }
 
     void Shoot()
@@ -82,7 +91,9 @@ public class TapDowmMovement : MonoBehaviour {
         SpriteRenderer tempRenderer = Instantiate(bullet, sightDirection.Find("Cannon").position, sightDirection.rotation).GetComponent<SpriteRenderer>();
         tempRenderer.color = spriteRenderer.color;
         Destroy(tempRenderer.gameObject, 2);
-        TapDowmMovement camera=Camera.main
+        TopCamMovement camera = Camera.main.GetComponent<TopCamMovement>();
+        camera.speed = 25;
+        camera.impulseDirection = sightDirection.up;
     }
 
     void MoveColor(float moveValue)
@@ -123,6 +134,14 @@ public class TapDowmMovement : MonoBehaviour {
         if (other.CompareTag("Block"))
         {
             Debug.Log("Block collision!");
+        }
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("wall"))
+        {
+            Debug.Log("wall");
+            wall = collision.gameObject;
         }
     }
 }
