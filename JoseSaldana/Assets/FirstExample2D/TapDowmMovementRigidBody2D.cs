@@ -42,7 +42,7 @@ public class TapDowmMovementRigidBody2D : MonoBehaviour {
     void Start()
     {
         Cursor.visible = false;
-        spriteRenderer.color = colors[colorIndex];
+        //spriteRenderer.color = colors[colorIndex];
         axisList.Add(new Axis("Horizontal", KeyCode.A, KeyCode.D));
         axisList.Add(new Axis("Vertical", KeyCode.S, KeyCode.W));
         axisList.Add(new Axis("Arrow_H", KeyCode.LeftArrow, KeyCode.RightArrow));
@@ -109,7 +109,7 @@ public class TapDowmMovementRigidBody2D : MonoBehaviour {
                 colorIndex = colors.Count - 1;
             }
         }
-        spriteRenderer.color = colors[colorIndex];
+        //spriteRenderer.color = colors[colorIndex];
     }
 
     int GetAxis(string axisName)
