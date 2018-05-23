@@ -22,6 +22,11 @@ public class TapDowmMovementRigidBody2D : MonoBehaviour {
     public Rigidbody2D rigidbody2D;
     Vector3 velocity;
 
+    public Animator animator;
+
+    const string DIR_HORIZONTAL = "Horizontal";
+    const string DIR_VERTICAL = "Vertical";
+
     class Axis
     {
         public string name;
@@ -43,18 +48,23 @@ public class TapDowmMovementRigidBody2D : MonoBehaviour {
     {
         Cursor.visible = false;
         //spriteRenderer.color = colors[colorIndex];
-        axisList.Add(new Axis("Horizontal", KeyCode.A, KeyCode.D));
-        axisList.Add(new Axis("Vertical", KeyCode.S, KeyCode.W));
+        axisList.Add(new Axis(DIR_HORIZONTAL, KeyCode.A, KeyCode.D));
+        axisList.Add(new Axis(DIR_VERTICAL, KeyCode.S, KeyCode.W));
         axisList.Add(new Axis("Arrow_H", KeyCode.LeftArrow, KeyCode.RightArrow));
     }
 
     // Update is called once per frame
     void Update()
     {
-        velocity = Vector3.zero;
+        /*velocity = Vector3.zero;
         velocity.x = GetAxis("Horizontal") * speed;
-        velocity.y = GetAxis("Vertical") * speed;
-       
+        velocity.y = GetAxis("Vertical") * speed;*/
+        Vector3 step = new Vector2(GetAxis(DIR_HORIZONTAL), GetAxis(DIR_VERTICAL));
+        animator.SetFloat(DIR_HORIZONTAL,step.x);
+        animator.SetFloat(DIR_VERTICAL, step.y);
+
+        step *= speed * Time.deltaTime;
+        rigidbody2D.MovePosition(transform.position + step);
 
         //sightDirection.Rotate (Vector3.back * GetAxis ("Arrow_H") * angularVelocity * Time.deltaTime);
 

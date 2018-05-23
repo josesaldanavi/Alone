@@ -262,7 +262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4990e03555d91a4483a6439cf35dbc1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 16
+  speed: 10
   angularVelocity: 6
   bullet: {fileID: 1293076103605924, guid: b4eb3206e864bb4419925631a7467f5a, type: 2}
   colors:
@@ -274,6 +274,7 @@ MonoBehaviour:
   sightObject: {fileID: 276539922}
   sightLine: {fileID: 131732312}
   rigidbody2D: {fileID: 212199401}
+  animator: {fileID: 212199407}
 --- !u!114 &212199405 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114738690284623336, guid: f1580c18a2a141f468e74f293410c1e0,
@@ -295,6 +296,24 @@ MonoBehaviour:
   spriteDown: {fileID: 21300008, guid: 9e327186e46e14156ab4f8cf6b381900, type: 3}
   spriteLeft: {fileID: 21300004, guid: 9e327186e46e14156ab4f8cf6b381900, type: 3}
   spriteRight: {fileID: 21300006, guid: 9e327186e46e14156ab4f8cf6b381900, type: 3}
+--- !u!95 &212199407
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 212199400}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0be8c5b168a954a598b96d9db9d4e664, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!4 &276539922 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4618892381071658, guid: f1580c18a2a141f468e74f293410c1e0,
@@ -4663,6 +4682,7 @@ GameObject:
   - component: {fileID: 944484671}
   - component: {fileID: 944484670}
   - component: {fileID: 944484673}
+  - component: {fileID: 944484674}
   m_Layer: 0
   m_Name: Block (7)
   m_TagString: Block
@@ -4765,6 +4785,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifePoints: 20
+--- !u!95 &944484674
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 944484669}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 4857bf5f70dfb467ba4a34eb2db21885, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1036675893
 GameObject:
   m_ObjectHideFlags: 0
@@ -4863,7 +4901,7 @@ Transform:
   m_LocalScale: {x: 1, y: 9.93, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1091200876
 GameObject:
@@ -5323,7 +5361,7 @@ Transform:
   m_LocalScale: {x: 15.77, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1916908996
 GameObject:
