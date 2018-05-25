@@ -10,39 +10,48 @@ public class PlatformerMovement : MonoBehaviour {
     public float jumpForce = 1;
 
 
+    Vector3 rightMode{ get { return transform.position - new Vector3(-0.5f, 1, 0); }}
+    Vector3 leftMode{ get { return transform.position - new Vector3(0.5f, 1, 0); }}
     bool isGrounded;
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-        if(!isGrounded){
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (!isGrounded)
+        {
             verticalSpeed -= gravity * Time.deltaTime;
-        }else {
-            if(Input.GetKeyDown(KeyCode.Space)){
+        }
+        else
+        {
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
                 verticalSpeed = jumpForce;
-                //esto es por isGrounded es booleano
                 isGrounded = false;
             }
         }
-        transform.Translate(Input.GetAxis("Horizontal") * horizontalSpeed * Time.deltaTime, verticalSpeed * Time.deltaTime, 0);
-        Debug.DrawRay(transform.position, Vector3.down, Color.red);
-	}
-	private void OnTriggerEnter2D(Collider2D other)
-	{
-        if(other.CompareTag("plataform")){
+
+        RaycastHit2D left = Physics2D.Raycast(leftMode,Vector3.down , 0.1f);
+        RaycastHit2D right = Physics2D.Raycast(rightMode, Vector3.down, 0.1f);
+
+        if(left || right){
             isGrounded = true;
             verticalSpeed = 0;
-            ContactFilter2D filter = new ContactFilter2D();
-            filter.useTriggers=true;
-            RaycastHit2D[] hits2D = null;
-            float currentDistance = 0;
-            Physics2D.Raycast(transform.position, Vector3.down, filter, hits2D);
-            if(hits2D != null){
-                currentDistance = hits2D[0].distance;
-            }
+        }else {
+            isGrounded = false;
         }
+        transform.Translate(Input.GetAxis("Horizontal") * horizontalSpeed * Time.deltaTime, verticalSpeed * Time.deltaTime, 0);
+
+    }
+
+	private void OnDrawGizmos()
+	{
+        Gizmos.DrawSphere(leftMode, 0.2f);
+        Gizmos.DrawSphere(rightMode, 0.2f);
 	}
+
 }
